@@ -6,14 +6,10 @@
       "id": 1
     },
     {
-      "title": "Hey",
-      "description": "New",
+      "title": "My First Stream With User ID",
+      "description": "My First Stream With User ID",
+      "userId": "118242586601973923865",
       "id": 2
-    },
-    {
-      "title": "Hey",
-      "description": "New",
-      "id": 3
     }
   ]
 }
