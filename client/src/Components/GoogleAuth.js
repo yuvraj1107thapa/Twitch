@@ -1,4 +1,5 @@
 import React from "react";
+const API_KEY = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 class GoogleAuth extends React.Component {
   state = { isSignedIn: null };
 
@@ -6,8 +7,10 @@ class GoogleAuth extends React.Component {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
-          clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+          //   clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+          clientId: `${API_KEY}`,
           scope: "email",
+          plugin_name: "Twitch",
         })
         .then(() => {
           this.auth = window.gapi.auth2.getAuthInstance(); // To get GAPI instance of frontend
