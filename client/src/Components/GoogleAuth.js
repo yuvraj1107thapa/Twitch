@@ -1,6 +1,8 @@
 import React from "react";
-const API_KEY = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+import { connect } from "react-redux";
+import { signIn, signOut } from "../Actions";
 
+const API_KEY = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 class GoogleAuth extends React.Component {
   state = { isSignedIn: null };
 
@@ -21,8 +23,13 @@ class GoogleAuth extends React.Component {
     });
   };
 
-  onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() }); // Gets invoked on event emission
+  onAuthChange = (signedIn) => {
+    // this.setState({ isSignedIn: this.auth.isSignedIn.get() }); // Gets invoked on event emission
+    if (signedIn) {
+      this.props.signIn(); // Came from the connect call for the Action Creator
+    } else {
+      this.props.signOut();
+    }
   };
 
   onSignIn = () => {
@@ -58,4 +65,4 @@ class GoogleAuth extends React.Component {
   }
 }
 
-export default GoogleAuth;
+export default connect(null, { signIn: signIn, signOut: signOut })(GoogleAuth);
